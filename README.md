@@ -89,8 +89,8 @@ Foram publicadas três tags no Docker Hub:
 
 | Tag | Conteúdo |
 |-----|----------|
-| `1.0` | Primeira versão funcional: busca + CRUD (criar, listar, excluir) no Supabase |
-| `1.1` | Melhoria: filtros *Visitados/Desejados*, contadores, anotações e troca de status (update) |
+| `1.0` | Primeira versão funcional: busca de países + CRUD completo no Supabase (criar, listar, editar status/anotação, excluir) com filtros |
+| `1.1` | Melhoria visual: bandeiras exibidas inteiras (sem corte) nos cards e na lista + selo da versão no rodapé |
 | `latest` | Aponta para a `1.1` |
 
 Evidência: ![Tags no Docker Hub](evidencias/sq2-tags-dockerhub.png)
