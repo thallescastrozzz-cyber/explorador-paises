@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorador de Países</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <h1>🌍 Explorador de Países</h1>
+    <p>Pesquise qualquer país e monte sua lista de <strong>visitados</strong> e <strong>desejados</strong> — salva num banco de dados real.</p>
+  </header>
+
+  <main class="container">
+    <!-- BUSCA (API REST Countries) -->
+    <section class="card">
+      <h2>Buscar país</h2>
+      <form id="form-busca" class="busca">
+        <input id="campo-busca" type="text" placeholder="Ex.: Japão, Brasil, Portugal..." required>
+        <button type="submit">Buscar</button>
+      </form>
+      <p id="status-busca" class="status"></p>
+      <div id="resultados" class="grade"></div>
+    </section>
+
+    <!-- MEUS PAÍSES (Supabase) -->
+    <section class="card">
+      <div class="cabecalho-lista">
+        <h2>Meus países</h2>
+        <div class="filtros">
+          <button class="filtro ativo" data-filtro="todos">Todos</button>
+          <button class="filtro" data-filtro="visitado">✈️ Visitados</button>
+          <button class="filtro" data-filtro="desejado">⭐ Desejados</button>
+        </div>
+      </div>
+      <p id="status-lista" class="status">Carregando...</p>
+      <ul id="lista-favoritos" class="lista"></ul>
+    </section>
+  </main>
+
+  <footer class="rodape">Bootcamp II · Etapa 02 · Dados: REST Countries + Supabase</footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
