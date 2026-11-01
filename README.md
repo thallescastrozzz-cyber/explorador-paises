@@ -93,13 +93,13 @@ Foram publicadas três tags no Docker Hub:
 | `1.1` | Melhoria visual: bandeiras exibidas inteiras (sem corte) nos cards e na lista + selo da versão no rodapé |
 | `latest` | Aponta para a `1.1` |
 
-Evidência: ![Tags no Docker Hub](evidencias/sq2-tags-dockerhub.png)
+Evidência: ![Tags no Docker Hub](https://raw.githubusercontent.com/thallescastrozzz-cyber/explorador-paises/main/evidencias/sq2-tags-dockerhub.png)
 
 ### SQ3 · Descrição no Docker Hub
 
 O *overview* do repositório no Docker Hub explica o que é a aplicação, traz o comando `docker run` pronto para copiar e o link deste repositório GitHub.
 
-Evidência: ![Overview no Docker Hub](evidencias/sq3-overview-dockerhub.png)
+Evidência: ![Overview no Docker Hub](https://raw.githubusercontent.com/thallescastrozzz-cyber/explorador-paises/main/evidencias/sq3-overview-dockerhub.png)
 
 ### SQ4 · Explorando a orquestração
 
@@ -111,7 +111,7 @@ docker run -d -p 8081:80 --name app-8081 thalles88/bootcamp2-app:1.1
 docker ps
 ```
 
-Evidência: ![docker ps com dois containers](evidencias/sq4-docker-ps.png)
+Evidência: ![docker ps com dois containers](https://raw.githubusercontent.com/thallescastrozzz-cyber/explorador-paises/main/evidencias/sq4-docker-ps.png)
 
 **Se eu tivesse 100 containers, como gerenciaria?**
 
