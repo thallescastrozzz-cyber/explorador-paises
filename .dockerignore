@@ -1,0 +1,24 @@
+# Controle de versão
+.git
+.gitignore
+.github
+
+# Documentação e rascunhos (não são servidos pelo Nginx)
+README.md
+PASSO-A-PASSO.md
+*.md
+rascunhos/
+evidencias/
+
+# Arquivos de banco/infra que não vão para a imagem
+supabase.sql
+Dockerfile
+.dockerignore
+
+# Lixo de editor e sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+node_modules/
+*.log
