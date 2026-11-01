@@ -6,8 +6,8 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 // 🔧 TROQUE PELOS DADOS DO SEU PROJETO (Project Settings → API)
 // A chave "anon public" foi feita para ficar no frontend; a proteção é feita pelas políticas RLS.
-const SUPABASE_URL = "https://SEU-PROJETO.supabase.co";
-const SUPABASE_ANON_KEY = "SUA_CHAVE_ANON";
+const SUPABASE_URL = "https://nrnbfnblfpndnujvarqx.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_KlzvoslLP9k7wRPwfOeZlg_fRUU1iJY";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const TABELA = "favoritos";
