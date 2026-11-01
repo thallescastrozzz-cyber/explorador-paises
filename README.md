@@ -10,12 +10,12 @@ Aplicação web que busca informações de qualquer país numa **base pública d
 |------|------|
 | (1) Repositório GitHub | https://github.com/thallescastrozzz-cyber/explorador-paises |
 | (2) Aplicação no GitHub Pages | https://thallescastrozzz-cyber.github.io/explorador-paises/ |
-| (3) Repositório no Docker Hub | https://hub.docker.com/r/SEU-USUARIO-DOCKERHUB/bootcamp2-app |
+| (3) Repositório no Docker Hub | https://hub.docker.com/r/thalles88/bootcamp2-app |
 
 ## ▶️ (4) Como executar (comando para o avaliador)
 
 ```bash
-docker run -d -p 8080:80 SEU-USUARIO-DOCKERHUB/bootcamp2-app:1.1
+docker run -d -p 8080:80 thalles88/bootcamp2-app:1.1
 ```
 
 Depois abra **http://localhost:8080** no navegador.
@@ -106,8 +106,8 @@ Evidência: ![Overview no Docker Hub](evidencias/sq3-overview-dockerhub.png)
 Dois containers da mesma imagem rodando ao mesmo tempo, nas portas 8080 e 8081:
 
 ```bash
-docker run -d -p 8080:80 --name app-8080 SEU-USUARIO-DOCKERHUB/bootcamp2-app:1.1
-docker run -d -p 8081:80 --name app-8081 SEU-USUARIO-DOCKERHUB/bootcamp2-app:1.1
+docker run -d -p 8080:80 --name app-8080 thalles88/bootcamp2-app:1.1
+docker run -d -p 8081:80 --name app-8081 thalles88/bootcamp2-app:1.1
 docker ps
 ```
 
