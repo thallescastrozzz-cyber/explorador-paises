@@ -70,7 +70,7 @@ button.perigo { background: #dc2626; }
   display: flex;
   flex-direction: column;
 }
-.pais img { width: 100%; height: 130px; object-fit: cover; background: #eee; }
+.pais img { width: 100%; height: 130px; object-fit: contain; background: #f4f6fb; padding: .6rem; border-bottom: 1px solid #e3e8f2; }
 .pais .info { padding: .8rem; flex: 1; font-size: .9rem; }
 .pais .info h3 { font-size: 1.05rem; margin-bottom: .3rem; }
 .pais .acoes { display: flex; gap: .4rem; padding: 0 .8rem .8rem; }
@@ -98,7 +98,7 @@ button.perigo { background: #dc2626; }
   border-radius: 10px;
   padding: .6rem .8rem;
 }
-.item img { width: 48px; height: 32px; object-fit: cover; border-radius: 4px; }
+.item img { width: 48px; height: 32px; object-fit: contain; border-radius: 4px; border: 1px solid #e3e8f2; background: #fff; }
 .item .texto { flex: 1; min-width: 0; }
 .item .texto strong { display: block; }
 .item .texto small { color: #5b6478; }
@@ -122,3 +122,5 @@ button.perigo { background: #dc2626; }
   .item { flex-wrap: wrap; }
   .item .botoes { width: 100%; }
 }
+
+.versao { display: inline-block; margin-left: .4rem; font-size: .75rem; background: #e8edf7; color: #1f2333; padding: .05rem .5rem; border-radius: 999px; }
