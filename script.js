@@ -25,19 +25,39 @@ let filtroAtual = "todos";
 let favoritosCache = [];
 
 // =====================================================================
-// API REST Countries
+// Dados dos países (API pública, sem chave)
+// Base aberta "mledoze/countries" servida pela CDN jsDelivr + bandeiras do flagcdn.com
+// (a REST Countries v3.1 foi desativada e agora exige cadastro e chave)
 // =====================================================================
-const CAMPOS = "name,translations,flags,capital,region,population,cca3";
+const URL_PAISES = "https://cdn.jsdelivr.net/gh/mledoze/countries@master/countries.json";
+let cachePaises = null;
+
+const normalizar = (t) =>
+  (t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+
+async function carregarPaises() {
+  if (!cachePaises) {
+    const resp = await fetch(URL_PAISES);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    cachePaises = await resp.json();
+  }
+  return cachePaises;
+}
 
 async function buscarPaises(termo) {
-  const t = encodeURIComponent(termo.trim());
-  // 1º tenta pelo nome em português (ex.: "Japão"); se não achar, tenta pelo nome em inglês
-  for (const rota of [`translation/${t}`, `name/${t}`]) {
-    const resp = await fetch(`https://restcountries.com/v3.1/${rota}?fields=${CAMPOS}`);
-    if (resp.ok) return resp.json();
-  }
-  return [];
+  const t = normalizar(termo);
+  const todos = await carregarPaises();
+  const nomes = (p) => [
+    p.translations?.por?.common, p.translations?.por?.official,
+    p.name.common, p.name.official,
+  ].map(normalizar);
+  // primeiro os que começam com o termo, depois os que apenas contêm
+  const comeca = todos.filter((p) => nomes(p).some((n) => n.startsWith(t)));
+  const contem = todos.filter((p) => !comeca.includes(p) && nomes(p).some((n) => n.includes(t)));
+  return [...comeca, ...contem];
 }
+
+const bandeira = (pais) => `https://flagcdn.com/w320/${pais.cca2.toLowerCase()}.png`;
 
 function nomePt(pais) {
   return pais.translations?.por?.common || pais.name.common;
@@ -58,7 +78,7 @@ formBusca.addEventListener("submit", async (e) => {
     paises.slice(0, 12).forEach(renderizarResultado);
   } catch (err) {
     statusBusca.className = "status erro";
-    statusBusca.textContent = "Erro ao consultar a API. Verifique sua conexão.";
+    statusBusca.textContent = "Erro ao carregar os dados dos países. Verifique sua conexão.";
     console.error(err);
   }
 });
@@ -67,12 +87,13 @@ function renderizarResultado(pais) {
   const card = document.createElement("article");
   card.className = "pais";
   card.innerHTML = `
-    <img src="${pais.flags.png}" alt="Bandeira de ${nomePt(pais)}">
+    <img src="${bandeira(pais)}" alt="Bandeira de ${nomePt(pais)}">
     <div class="info">
       <h3>${nomePt(pais)}</h3>
       <p>🏛️ Capital: ${pais.capital?.[0] ?? "—"}</p>
-      <p>🌐 Região: ${pais.region}</p>
-      <p>👥 População: ${pais.population.toLocaleString("pt-BR")}</p>
+      <p>🌐 Região: ${pais.region}${pais.subregion ? ` · ${pais.subregion}` : ""}</p>
+      <p>🗣️ Idiomas: ${Object.values(pais.languages || {}).join(", ") || "—"}</p>
+      <p>📐 Área: ${(pais.area ?? 0).toLocaleString("pt-BR")} km²</p>
     </div>
     <div class="acoes">
       <button data-status="visitado">✈️ Visitei</button>
@@ -83,7 +104,7 @@ function renderizarResultado(pais) {
     btn.addEventListener("click", async () => {
       const extra = {
         codigo: pais.cca3,
-        bandeira: pais.flags.png,
+        bandeira: bandeira(pais),
         capital: pais.capital?.[0] ?? null,
         regiao: pais.region,
         status: btn.dataset.status,

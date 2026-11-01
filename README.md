@@ -2,7 +2,7 @@
 
 > Bootcamp II · Etapa 02 — Persistência + Docker (evolução direta do projeto da Etapa 01)
 
-Aplicação web que busca informações de qualquer país na **API REST Countries** e permite montar uma lista pessoal de **países visitados e desejados**, com anotações — tudo salvo num banco **PostgreSQL (Supabase)**. A aplicação é empacotada numa imagem **Docker** (Nginx) publicada no **Docker Hub**.
+Aplicação web que busca informações de qualquer país numa **base pública de países** ([mledoze/countries](https://github.com/mledoze/countries), servida pela CDN jsDelivr, com bandeiras do [flagcdn](https://flagcdn.com)) e permite montar uma lista pessoal de **países visitados e desejados**, com anotações — tudo salvo num banco **PostgreSQL (Supabase)**. A aplicação é empacotada numa imagem **Docker** (Nginx) publicada no **Docker Hub**.
 
 ## 🔗 Links
 
@@ -49,6 +49,10 @@ Depois abra **http://localhost:8080** no navegador.
 - **D — Excluir:** botão **“Excluir”** em cada item remove o registro do banco.
 
 Os dados **sobrevivem ao fechamento do navegador** e aparecem em qualquer dispositivo, pois ficam no PostgreSQL — não é usado `localStorage`.
+
+### ℹ️ Fonte dos dados de países
+
+A versão inicial usava a API REST Countries (`/v3.1`), mas essas versões foram desativadas e a nova (`/v5`) exige cadastro e chave de API. Para não expor uma chave no frontend, a busca passou a usar a base aberta **mledoze/countries** (a mesma que originou a REST Countries), carregada uma única vez pela CDN jsDelivr e filtrada no navegador — inclusive por nomes em português e sem acento (ex.: "japao").
 
 ### ⚠️ Limitação conhecida (RLS)
 
@@ -117,7 +121,7 @@ Gerenciar 100 containers com `docker run` manual seria inviável: eu teria de es
 
 ## 🧱 Tecnologias
 
-HTML5 · CSS3 · JavaScript (ES Modules) · [REST Countries API](https://restcountries.com) · Supabase (PostgreSQL) · Docker · Nginx · GitHub Pages
+HTML5 · CSS3 · JavaScript (ES Modules) · [mledoze/countries](https://github.com/mledoze/countries) via jsDelivr · [flagcdn](https://flagcdn.com) · Supabase (PostgreSQL) · Docker · Nginx · GitHub Pages
 
 ## 📁 Estrutura
 
